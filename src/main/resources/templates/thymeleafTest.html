@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>List test thymeleaf</title>
+</head>
+<body>
+    <table>
+        <tr th:each="list1 : ${list}">
+            <td th:text="${list1.id}">
+
+            </td>
+            <td th:text="${list1.name}">
+
+            </td>
+        </tr>
+
+    </table>
+
+</body>
+</html>

@@ -61,7 +61,7 @@ public class MemberConttroller {
 
     //회원 입력
     @PostMapping
-    public ResponseEntity<MemberVo> save(MemberVo member){
+    public ResponseEntity<MemberVo> save(@RequestBody MemberVo member){
         return new ResponseEntity<MemberVo>(memberService.save(member),HttpStatus.OK);
     }
 
@@ -70,4 +70,6 @@ public class MemberConttroller {
     public ResponseEntity<MemberVo> save(HttpServletRequest request, MemberVo member){
         return new ResponseEntity<MemberVo>(memberService.save(member), HttpStatus.OK);
     }
+
+
 }

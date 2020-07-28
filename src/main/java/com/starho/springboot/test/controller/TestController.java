@@ -2,7 +2,6 @@ package com.starho.springboot.test.controller;
 
 import com.starho.springboot.test.service.MemberService;
 import com.starho.springboot.test.service.TestService;
-import com.starho.springboot.test.vo.MemberVo;
 import com.starho.springboot.test.vo.TestVo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class TestController {
@@ -61,10 +59,10 @@ public class TestController {
     }
 
 
-    @RequestMapping(value = "/memberTest/update")
+    @RequestMapping(value = "/memberTest/update/{mbrNo}")
     public String memberUpdate(@PathVariable("mbrNo") Long mbrNo, Model model){
-        Optional<MemberVo> member = memberService.findById(mbrNo);
-        model.addAttribute("memberList",member);
+
+        model.addAttribute("memberList",memberService.findById(mbrNo).get());
 
         return "memberUpdate";
     }

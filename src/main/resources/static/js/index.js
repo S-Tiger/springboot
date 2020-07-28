@@ -18,8 +18,10 @@ var main = {
 
     save : function () {
         var data = {
+            mbrNo: $('#mbrNo').val,
             name: $('#name').val(),
-            id: $('#id').val(),
+            id: $('#id').val()
+
         };
 
         $.ajax({
@@ -37,14 +39,15 @@ var main = {
     },
     update : function () {
         var data = {
+            mbrNo: $('#mbrNo').val(),
             name: $('#name').val(),
-            id: $('#id').val(),
+            id: $('#id').val()
         };
-        var id = $('#id').val();
+        var mbrNo = $('#mbrNo').val();
 
         $.ajax({
             type: 'PUT',
-            url: '/memberTest'+id,
+            url: '/memberTest/'+mbrNo,
             dataType: 'json',
             contentType:'application/json; charset=utf-8',
             data: JSON.stringify(data)
@@ -56,11 +59,11 @@ var main = {
         });
     },
     delete : function () {
-        var id = $('#id').val();
+        var mbrNo = $('#mbrNo').val();
 
         $.ajax({
             type: 'DELETE',
-            url: '/memberTest'+id,
+            url: '/memberTest/'+mbrNo,
             dateType: 'json',
             contentType:'application/json; charset=utf-8'
         }).done(function() {

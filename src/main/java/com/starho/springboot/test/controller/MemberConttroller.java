@@ -54,7 +54,7 @@ public class MemberConttroller {
 
     //회원번호로 회원 수정 (mbrNo로 회원을 찾아 member 객체의 id,name으로 수정함)
     @PutMapping(value = "/{mbrNo}", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<MemberVo> updateMember(@PathVariable("mbrNo") Long mbrNo, MemberVo member){
+    public ResponseEntity<MemberVo> updateMember(@PathVariable("mbrNo") Long mbrNo, @RequestBody MemberVo member){
         memberService.updateById(mbrNo,member);
         return new ResponseEntity<MemberVo>(member, HttpStatus.OK);
     }

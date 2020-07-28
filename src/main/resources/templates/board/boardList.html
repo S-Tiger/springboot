@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>memberTest</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+<h1>게시판</h1>
+<div class="col-md-12">
+    <div class ="row">
+        <div class="col-md-6">
+
+                <table th:if="${boardList}" border="1px"><!--타임리프 조건문-->
+                    <tr>
+                        <td>글 번호</td>
+                        <td>제목</td>
+                        <td>내용</td>
+                        <td>작성자</td>
+                    </tr>
+                <tr th:each="boardTest : ${boardList}" align="center"> <!--타임리프 반복문-->
+
+                    <td th:text="${boardTest.boardNo}"></td>
+                    <td><a th:href="@{/board/update/{boardNo}(boardNo=${boardTest.boardNo})}"  th:text="${boardTest.title}" ></a></td>
+                    <td th:text="${boardTest.content}"></td>
+                    <td th:text="${boardTest.author}"></td>
+
+                </tr>
+                </table>
+            <a href="/boardSave" role="button" class="btn btn-primary">새글등록</a>
+           </div>
+        </div>
+    </div>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+
+<script src="/js/board.js"></script>
+</body>
+</html>

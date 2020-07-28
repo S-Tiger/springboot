@@ -16,7 +16,7 @@ import java.util.Optional;
 
 @RestController //@Controller + ResponseBody 라 생각하면 편하다
 @RequestMapping("memberTest")
-public class MemberConttroller {
+public class MemberController {
 
     //ResponseEntity타입: @RestController는 별도의 뷰를 제공하지않는 형태로 서비스를 실행하기 때문에
     //리턴 데이터가 예외적인 상황에서 문제가 발생할수 있다. 웹경우 HTTP 상태코드가 이러한 정보를 나타내는데 사용된다.
@@ -33,7 +33,7 @@ public class MemberConttroller {
     //모든 회원 조회
     @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<MemberVo>> getAllmembers(){
-        List<MemberVo> member = memberService.finaAll();
+        List<MemberVo> member = memberService.findAll();
         return new ResponseEntity<List<MemberVo>>(member, HttpStatus.OK );
 
     }

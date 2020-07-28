@@ -1,5 +1,6 @@
 package com.starho.springboot.test.controller;
 
+import com.starho.springboot.test.service.BoardService;
 import com.starho.springboot.test.service.MemberService;
 import com.starho.springboot.test.service.TestService;
 import com.starho.springboot.test.vo.TestVo;
@@ -14,13 +15,16 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 @Controller
-public class TestController {
+public class ViewController {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     MemberService memberService;
     @Autowired
     TestService testService;
+    @Autowired
+    BoardService boardService;
+
 
     @GetMapping("/test")
     public ModelAndView test() throws Exception{
@@ -49,7 +53,7 @@ public class TestController {
 
     @RequestMapping("/")
     public String memeberMain(Model model){
-        model.addAttribute("memberList", memberService.finaAll());
+        model.addAttribute("memberList", memberService.findAll());
 
         return "memberList";
     }
@@ -66,5 +70,23 @@ public class TestController {
 
         return "memberUpdate";
     }
+    @RequestMapping("/boardList")
+    public String boardList(Model model){
+        model.addAttribute("boardList", boardService.findAll());
 
+        return "board/boardList";
+    }
+
+    @RequestMapping(value = "/boardSave")
+    public String boardSave(){
+        return "board/boardSave";
+    }
+
+    @RequestMapping(value = "/board/update/{boardNo}")
+    public String boardUpdate(@PathVariable("boardNo") Long boardNo, Model model){
+
+        model.addAttribute("boardList",boardService.findById(boardNo).get());
+
+        return "board/boardUpdate";
+    }
 }
